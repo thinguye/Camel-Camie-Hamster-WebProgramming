@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cammie & Hamster - Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="images/logo (1).png">
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#signed').hide();
+			$('#loadLess').hide();
+			$('#show-social').hide();
+			$('#myBtn').hide();
+			$('div#intro2').hide();
+			let guest = [
+				{
+					"ID": "1831200006",
+					"FullName": "Nguyễn Ngọc Lan Thi",
+					"Address": "123 Nguyễn Văn Thành",
+					"UserName": "thinguyen123",
+					"Password": "12345678"
+				}
+			];
+			$(window).scroll(function () {
+			    if ($(this).scrollTop() > 20) {
+			    	$('#myBtn').fadeIn();
+			    } else {
+			    	$('#myBtn').fadeOut();
+			    }
+				if ($(this).scrollTop() > 400) {
+			    	$('.desktop-menu').addClass('on-top-page');
+			    }else {
+			        $('.desktop-menu').removeClass('on-top-page');
+			    }
+			    if ($(this).scrollTop() > $(this).height()) {
+			    	$('.social-media').fadeOut();
+			    } else {
+			    	$('.social-media').fadeIn();
+			    }
+			});
+
+		    $('#myBtn').click(function () {
+			    $('body, html').animate({scrollTop: 0}, 800);
+			    return false;
+		    });
+
+    		$('#loadMore').click(function(){
+				$('#loadMore').hide();
+				$('#loadLess').show();
+				$('div#intro2').show();
+    		});
+    		$('#loadLess').click(function(){
+				$('#loadLess').hide();
+				$('#loadMore').show();
+				$('div#intro2').hide();
+    		});
+    		$('#hide-social').click(function(){
+				$('#hide-social').hide();
+				$('#show-social').show();
+				$('.social').fadeOut();
+    		});
+    		$('#show-social').click(function(){
+				$('#show-social').hide();
+				$('#hide-social').show();
+				$('.social').fadeIn();
+    		});
+    		$('#logIn').click(function(){
+    			$('#logIn-overlay').fadeIn();
+		    });
+		    $('#Submit').click(function(){
+		    	let _flag = false;
+		    	let _user = $('#username').val();
+    			let _pass = $('#password').val();
+    			for (let _g of guest){
+    				if (_g.UserName == _user && _g.Password == _pass){
+    					alert("Đăng nhập thành công");
+    					$('#logIn-overlay').fadeOut();
+    					$('#offcanvasRightLabel').text(_g.FullName);
+    					$('#signed').show();
+    					$('#unSigned').hide();
+    					_flag = true;
+    					return;
+    				}
+    				if (_g.UserName == _user && _g.Password != _pass){
+    					let _confirm = confirm("Sai mật khẩu");
+	    				if (_confirm == false){
+	    					$('#logIn-overlay').fadeOut();
+	    				}
+	    				break;	
+    				}
+    			}
+    			if (_flag == false){
+    				let _confirm = confirm("Tài khoản không tồn tại! Tạo tài khoản mới?");
+    				if (_confirm == false){
+    					$('#logIn-overlay').fadeOut();
+    				}
+    			}
+		    });
+		    $('#signOut').click(function(){
+		    	let _confirm = confirm("Bạn muốn đăng xuất?");
+		    	if (_confirm){
+					$('#logIn-overlay').fadeOut();
+					$('#offcanvasRightLabel').text('Tài khoản');
+					$('#signed').hide();
+					$('#unSigned').show();
+				}
+		    });
+		});
+	</script>
+</head>
+<body>
+	<span id="myBtn"><i class="fas fa-arrow-up"></i></span>
+	<div class="social-media">
+		<div class="social">
+			<a href="" id="facebook"><i class="fab fa-facebook-f"></i></a> 
+			<a href="" id="youtube"><i class="fab fa-youtube"></i></a>
+			<a href="" id="twitter"><i class="fab fa-twitter"></i></a>
+			<a href="" id="google"><i class="fab fa-google-plus-g"></i></a>
+			<a href="" id="pinterest"><i class="fab fa-pinterest"></i></a>
+		</div>
+		<button id="hide-social" type="button"><i class="fa fa-caret-left"></i></button>
+		<button id="show-social" type="button"><i class="fa fa-caret-right"></i></button>
+	</div>
+	<header>
+		<div class="contact">
+			<marquee>Cammie & Hamster - Cửa hàng thú cưng uy tín tại Bình Dương. Địa chỉ: 123 Nguyễn Văn Thành, phường Hòa Lợi, thị xã Bến Cát, tỉnh Bình Dương.
+			</marquee>
+			<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa fa-user"></i></button>
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+				<div id="sideBars" class="offcanvas-header">
+					<h4 id="offcanvasRightLabel">Tài khoản</h4>
+					<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div id="sideBars" class="offcanvas-body">
+					<ul id= "unSigned">
+						<li id="logIn"><a href="#">Đăng nhập</a></li>
+						<li id="signIn"><a href="#">Đăng ký</a></li>
+					</ul>
+					<ul id = "signed">
+						<li><a href="#">Thông tin tài khoản</a></li>
+						<li><a href="#">Giỏ hàng</a></li>
+						<li><a href="#">Đơn hàng</a></li>
+						<li id="signOut"><a href="#">Đăng xuất</a></li>
+					</ul>
+				</div>
+			</div>		
+		</div>
+		<div id="logIn-overlay">
+			<div id="text">
+				<h5>Đăng nhập</h5>
+				<form>
+					<div class="mb-3">
+						<label for="username" class="form-label">Username</label>
+						<input type="text" class="form-control" id="username" required>
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input type="password" class="form-control" id="password" required>
+					</div>
+					<div id="SubmitBtn" class="mb-3">
+						<button id="Submit" type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="logo">
+					<a href="home.html"><img src="images/logo (1).png" alt="Cammie hamster logo" loading="lazy"></a>
+				</div>
+				<div class="search">
+					<form>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="button-addon2">
+							<button class="btn" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="desktop-menu">
+			<div class="container-fluid">
+				<div class="row">
+					<ul>
+						<li class="active"><a class="active" href="home.html">Trang chủ</a></li>
+						<li><a href="hamster.html">Hamster</a>
+							<ul>
+				                <li><a href="#">Roboroskiv</a></li>
+				                <li><a href="#">Bear</a></li>
+				                <li><a href="#">Campell</a></li>
+				                <li><a href="#">Winter White</a></li>
+				            </ul>
+				    	</li>
+						<li><a href="#">Sản phẩm hamster</a></li>
+						<li><a href="#">Dịch vụ</a></li>
+						<li><a href="#">Khuyến mãi</a></li>
+						<li><a href="#">Chăm sóc</a></li>
+						<li><a href="#">Giới thiệu</a></li>
+						<li><a href="#">Liên lạc</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="mobile-menu">
+			<div class="dropdown mt-3">
+				<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+				<i class="fa fa-align-justify"></i>
+				</button>
+				<ul class="dropdown-menu background-Nav" aria-labelledby="dropdownMenuButton">
+					<li class="active"><a class="active" href="home.html">Trang chủ</a></li>
+					<li><a href="hamster.html">Hamster</a>
+						<ul>
+			                <li><a href="#">Roboroskiv</a></li>
+			                <li><a href="#">Bear</a></li>
+			                <li><a href="#">Campell</a></li>
+			                <li><a href="#">Winter White</a></li>
+			            </ul>
+			    	</li>
+					<li><a href="#">Sản phẩm hamster</a></li>
+					<li><a href="#">Dịch vụ</a></li>
+					<li><a href="#">Khuyến mãi</a></li>
+					<li><a href="#">Chăm sóc</a></li>
+					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="#">Liên lạc</a></li>
+				</ul>
+		    </div>
+		</div>
+	</header>
+
+	<main>
+		<div class="main-content">
+			<div class="row g-0">
+				<div class="col-sm-12 col-md-9">
+					<div id="myCarousel" class="carousel slide sliders" data-bs-ride="carousel">
+						<div class="carousel-indicators">
+							<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+							<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+							<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+						</div>
+						<div class="carousel-inner">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img src="images/template (1).png" class="d-block w-100" alt="Guinepig" loading="lazy">
+								</div>
+								<div class="carousel-item">
+									<img src="images/template (2).png" class="d-block w-100" alt="Hamster Winter White" loading="lazy">
+								</div>
+								<div class="carousel-item">
+									<img src="images/template (3).png" class="d-block w-100" alt="Hamster Bear White" loading="lazy">
+								</div>
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+					<div class="cover">
+						<h3 class="title"><a id="name" href="introduction.html">Về chúng tôi</a></h3>
+						<div id="intro" class="row spacing">
+							<h5>GIỚI THIỆU VỀ HAMSTER</h5>
+							<div class="col-sm-12 col-md-7">
+								<p>Bạn có biết rằng rất rất rất nhiều loại hamster khác nhau thật sự ra chỉ chia làm 2 dòng chính? Hamster là loại 1 trong số những loài gặm nhấm phổ biến được coi như vật nuôi. Hamster là động vật có vú thuộc bộ gặm nhấm- đó là những loài có răng cửa lớn và phát triển liên tục. Do đó mà các bé hamster của bạn không ngừng gặm hoài mài răng để tránh việc răng mọc quá dài khỏi tầm kiểm soát. Hầu hết các pé hams đều có thói quen giữ thức ăn trong túi má hoặc chôn dưới lớp mùn cưa trong hang của mình.</p>
+								<div id="intro2">
+									<p>Trong hoang dã Hamster có xu hướng sinh sống tại các khu vực bán sa mạc. Chúng thường đào những cái hang khá phức tạp với chằng chịt những đường hầm cùng nhiều hốc để cất dấu thức ăn và để ngủ. Các hamster hoang dã luôn hoạt động về đêm, thương ngủ suốt cả ngày đến khuya thì dậy hoạt động. Thị giác của chúng thì rất kém nhưng cách đánh mùi hay nghe ngóng thì vô cùng nhạy.</p>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-5">
+								<img src="images/background.jpg" alt="Cute Hamster" loading="lazy">
+							</div>
+							<div id="intro2" class="row">
+								<div class="col-sm-12 col-md-3">
+									<p>Các loại hamster thường thấy:</p>
+								</div>
+								<div class="col-sm-12 col-md-3">
+									<a id="text-title" href="">Bear (còn gọi là Hamster Gấu)</a>
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<a id="text-title" href="">Winter White</a>
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<a id="text-title" href="">Campell</a>
+								</div>
+								<div class="col-sm-12 col-md-2">
+									<a id="text-title" href="">Roboroskiv</a>
+								</div>
+							</div>
+						</div>
+						<div class="more">
+							<button id="loadMore" type="button">XEM THÊM</button>
+							<button id="loadLess" type="button">THU GỌN</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-3">
+					<div class="cover">
+						<h3 class="title"><a id="name" href="product.html">Sản phẩm cho hamster</a></h3>
+						<div class="row spacing">
+							<div class="col-5 col-md-5">
+								<a href=""><img id="image" src="images/xich_du.png" alt="Xích đu hamster" loading="lazy"></a>
+							</div>
+							<div class="col-7 col-md-7">
+								<a href="#" id="text-title">
+									<h6>Xích đu</h6>
+									<p>Giá bán: 20.000 VNĐ</p>	
+								</a>
+							</div>
+						</div>
+						<div class="row spacing">
+							<div class="col-5 col-md-5">
+								<a href=""><img id="image" src="images/nha_ngu.png" alt="Nhà ngủ mèo hamster" loading="lazy"></a>	
+							</div>
+							<div class="col-7 col-md-7">
+								<a href="#" id="text-title">
+									<h6>Nhà ngủ hình mèo</h6>
+									<p>Giá bán: 200.000 VNĐ</p>	
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="cover">
+						<h3 class="title"><a id="name" href="product.html">Chăm sóc hamster</a></h3>
+						<div class="row spacing">
+							<div class="col-5 col-md-5">
+								<img id="image" src="images/teapot.jpg" alt="Nhà ngủ ấm trà" loading="lazy">	
+							</div>
+							<div class="col-7 col-md-7">
+								<h6><a href="#" id="text-title">Cách giúp bạn phân biệt các loài Hamster</a></h6>
+							</div>
+						</div>
+						<div class="row spacing">
+							<div class="col-5 col-md-5">
+								<img id="image" src="images/hamster-eating.jpg" alt="Hamster eating" loading="lazy">	
+							</div>
+							<div class="col-7 col-md-7">
+								<h6><a href="#" id="text-title">Những điều cần biết trước khi nuôi Hamster</a></h6>
+							</div>
+						</div>
+					</div>
+					<div class="cover">
+						<h3 class="title"><a id="name" href="product.html">Tin tức khuyến mãi</a></h3>
+						<ul>
+							<li><a href="#" id="text-title">Siêu hè siêu sale - Mua 3 tặng 1</a></li>
+							<li><a href="#" id="text-title">Giảm 10% khi mua combo lồng tại shop</a></li>
+							<li><a href="#" id="text-title">Combo rẻ, sao phải lo!</a></li>
+						</ul>						
+					</div>
+					<div class="cover">
+						<h3 class="title"><a id="name" href="product.html">Thắc mắc nhanh</a></h3>
+						<div class="spacing">
+							<form>
+								<div class="mb-3">
+									<input type="email" name="Email" class="form-control" required placeholder="example@gmail.com">
+								</div>
+								<div class="mb-3">
+									<textarea name="comments" class="form-control" placeholder="Nội dung của bạn" id="floatingTextarea"></textarea>
+								</div>
+								<div id="SendBtn" class="mb-3">
+									<button id="Send" type="submit" class="btn"><i class="fa fa-paper-plane"></i></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="iframe-container">
+			<div class="container">
+				<h4>HÌNH ẢNH VÀ VIDEO</h4>
+				<div class="row">
+					<div class="col-sm-12 col-md-3">
+						<iframe src="https://www.youtube.com/embed/Sn2xo5CMX34">
+						</iframe>
+						<h6><a href="">Let's talk about HAMSTER CAGES</a></h6>
+						<p><i class="far fa-calendar-alt"></i> 30/08/2021</p>
+					</div>
+					<div class="col-sm-12 col-md-3">
+						<iframe src="https://www.youtube.com/embed/lkgKFQaLc9c"></iframe>
+						<h6><a href="">ASMR | HamppyHamster</a></h6>
+						<p><i class="far fa-calendar-alt"></i> 25/09/2020</p>
+					</div>
+					<div class="col-6 col-md-3">
+						<iframe src="https://www.youtube.com/embed/HEfJyaRV6js"></iframe>
+						<h6><a href="">Khoảnh khắc đáng yêu của bé Bear</a></h6>
+						<p><i class="far fa-calendar-alt"></i> 30/08/2021</p>	
+					</div>
+					<div class="col-6 col-md-3">
+						<iframe src="https://www.youtube.com/embed/ZTQMbzaDC4Y"></iframe>
+						<h6><a href="">Những Lưu Ý Khi Chăm Hamster Đẻ</a></h6>
+						<p><i class="far fa-calendar-alt"></i> 25/09/2020</p>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</main>
+	<footer>
+		<div class="feature-desktop">
+			<img src="images/border_pink.png">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-3">
+						<div class="content">
+							<i class="fa fa-truck"></i>
+							<h5>GIAO HÀNG MIỄN PHÍ</h5>
+							<p>Giao hàng miễn phí trong nội thành</p>
+						</div>
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-3">
+						<div class="content">
+							<i class="fab fa-weixin"></i>
+							<h5>TƯ VẤN TẬN TÂM</h5>
+							<p>Đội ngũ nhân viên thân thiệt nhiệt tình</p>
+						</div>
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-3">
+						<div class="content">
+							<i class="fa fa-dollar-sign"></i>
+							<h5>GIÁ THÀNH TỐT NHẤT</h5>
+							<p>Cam kết giá thành & dịch vụ sau bán hàng tốt nhất</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="feature-mobile">
+			<div class="row">
+				<div class="col-sm-12 col-md-4">
+					<div class="d-flex align-items-center">
+						<div id="awe" class="flex-shrink-0">
+							<i class="fa fa-truck"></i>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<h5>MIỄN PHÍ GIAO HÀNG</h5>
+							<p>Giao hàng miễn phí trong nội thành và đơn hàng trên 500k</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-4">
+					<div class="d-flex align-items-center">
+						<div id="awe" class="flex-shrink-0">
+							<i class="fab fa-weixin"></i>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<h5>TẬN TÂM PHỤC VỤ</h5>
+							<p>Đội ngũ nhân viên thân thiệt nhiệt tình</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-4">
+					<div class="d-flex align-items-center">
+						<div id="awe" class="flex-shrink-0">
+							<i id="dollar" class="fa fa-dollar-sign"></i>
+						</div>
+						<div class="flex-grow-1 ms-3">
+							<h5>GIÁ THÀNH TỐT NHẤT</h5>
+							<p>Cam kết giá thành và dịch vụ sau bán hàng tốt nhất</p>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		
+		<div class="contact-footer contact">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12 col-md-3">
+									<div class="row image">
+										<a href=""><img id="image" src="images/logo (1).png"></a>
+									</div>
+									<div class="row">
+										<p><a href="">Cammie & Hamster</a> - Cửa hàng thú cưng uy tín tại Bình Dương. Chuyên cung cấp sỉ và lẻ các mặt hàng dành cho hamster: lồng nuôi, thức ăn, thuốc chữa bệnh, đồ chơi,…. Ship COD toàn quốc.</p>	
+									</div>
+					</div>
+					<div class="col-sm-12 col-md-4">
+						<div class="ggMap">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.8080684228!2d106.66398021475155!3d11.053012092134221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1d7df763eaf%3A0xf4323e44f2867057!2sEastern%20International%20University!5e0!3m2!1sen!2s!4v1630292475348!5m2!1sen!2s" width="375" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-2">
+						<h6>THÔNG TIN</h6>
+						<ul>
+							<div class="row">
+								<li><a href="">Hướng dẫn đặt hàng</a></li>
+								<li><a href="">Phương thức thanh toán</a></li>
+								<li><a href="">Điều khoản mua hàng</a></li>
+								<li><a href="">Chính sách giao hàng</a></li>
+								<li><a href="">Chính sách đổi trả</a></li>
+							</div>
+						</ul>
+					</div>
+					<div class="col-sm-12 col-md-3">
+						<h6>LIÊN HỆ</h6>
+						<ul>
+							<li>
+								<div class="row">
+									<div class="col-sm-12 col-md-4">
+										<b>Điện thoại</b>
+									</div>
+									<div class="col-sm-12 col-md-8">
+										<p>038 213 2704</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="row">
+									<div class="col-sm-12 col-md-4">
+										<b>CH chính</b>
+									</div>
+									<div class="col-sm-12 col-md-8">
+										<p>123 Nguyễn Văn Thành, phường Hòa Lợi, thị xã Bến Cát, tỉnh Bình Dương</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="row">
+									<div class="col-sm-12 col-md-4">
+										<b>Chi nhánh</b>
+									</div>
+									<div class="col-sm-12 col-md-8">
+										<p>15 Sư Vạn Hạnh, phường 9, quận 5, TPHCM</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="row">
+									<b>Mọi ý kiến xin vui lòng gửi về</b>
+									<p>
+										<a href="">thi.nguyen.set18@eiu.edu.vn</a>
+										<br>
+										<a href=""><i class="fab fa-facebook-square"></i></a> 
+										<a href=""><i class="fab fa-youtube-square"></i></a>
+										<a href=""><i class="fab fa-twitter-square"></i></a>
+										<a href=""><i class="fab fa-google-plus-square"></i></a>
+										<a href=""><i class="fab fa-pinterest-square"></i></a>
+									</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="author">
+						<p>Thuộc bản quyền &copy; <a href="home.html">Cammie & Hamster</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</footer>
+</body>
+</html>
